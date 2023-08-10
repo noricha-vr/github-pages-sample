@@ -23,3 +23,5 @@ jobs:
 
     - name: Run script
       run: bash update.sh
+      env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
