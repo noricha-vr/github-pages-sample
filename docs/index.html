@@ -1,9 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
 
-# 見出し1
-## 見出し2
-### 見出し3
-```python
-text = 'hello world'
-print(f'Hi! {text}')
-```
-`Python` `JS`
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Display</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <h1 class="text-center mt-5" style="font-family: 'Noto Sans JP', sans-serif;">個人開発集会 LT予定表</h1>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 text-center">
+            <img class="img-fluid mx-auto d-block img-thumbnail"
+                src="https://pbs.twimg.com/media/F1NB2vVaEAAtUmJ?format=png&name=medium" alt="個人開発集会LT予定表">
+        </div>
+    </div>
+    <div class="container mt-3">
+        <table class="table table-striped table-light table-hover">
+            <thead>
+                <tr>
+                    <th>テーマ</th>
+                    <th>日付</th>
+                    <th>開始時間</th>
+                    <th>発表者</th>
+                </tr>
+            </thead>
+            <tbody id="schedule" class="table shadow">
+                <!-- Rows will be populated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function fetchSchedule() {
+            try {
+                let response = await fetch("https://noricha-vr.github.io/github-pages-sample/sample.json");
+                let data = await response.json();
+
+                let scheduleBody = document.getElementById('schedule');
+
+                for (let item of data) {
+                    let row = document.createElement('tr');
+
+                    let themeCell = document.createElement('td');
+                    themeCell.textContent = item.テーマ;
+
+                    let dateCell = document.createElement('td');
+                    let parsedDate = new Date(item.日付);
+                    let formattedDate = `${parsedDate.getFullYear()}-${String(parsedDate.getMonth() + 1).padStart(2, '0')}-${String(parsedDate.getDate()).padStart(2, '0')}`;
+                    dateCell.textContent = formattedDate;
+
+                    let startTimeCell = document.createElement('td');
+                    startTimeCell.textContent = item.開始時間;
+                    startTimeCell.classList.add('mp-2');
+
+                    let presenterCell = document.createElement('td');
+                    presenterCell.textContent = item.発表者;
+
+                    row.appendChild(themeCell);
+                    row.appendChild(dateCell);
+                    row.appendChild(startTimeCell);
+                    row.appendChild(presenterCell);
+
+                    scheduleBody.appendChild(row);
+                }
+
+            } catch (error) {
+                console.error("Error fetching the data:", error);
+            }
+        }
+
+        // Load the schedule when the document is ready
+        document.addEventListener('DOMContentLoaded', fetchSchedule);
+    </script>
+</body>
+
+</html>
