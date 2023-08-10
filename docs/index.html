@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="container mt-3">
-        <table class="table table-striped table-light table-hover">
+        <table class="table table-light">
             <thead>
                 <tr>
                     <th>テーマ</th>
@@ -46,6 +46,8 @@
                 let data = await response.json();
 
                 let scheduleBody = document.getElementById('schedule');
+                let previousDate = "";
+                let isAlternate = false; // このフラグを使用して背景色を切り替えます
 
                 for (let item of data) {
                     let row = document.createElement('tr');
@@ -57,6 +59,15 @@
                     let parsedDate = new Date(item.日付);
                     let formattedDate = `${parsedDate.getFullYear()}-${String(parsedDate.getMonth() + 1).padStart(2, '0')}-${String(parsedDate.getDate()).padStart(2, '0')}`;
                     dateCell.textContent = formattedDate;
+
+                    if (previousDate !== formattedDate) {
+                        isAlternate = !isAlternate; // 日付が変わった場合、フラグを反転
+                        previousDate = formattedDate;
+                    }
+
+                    if (isAlternate) {
+                        row.classList.add('alternate-row');
+                    }
 
                     let startTimeCell = document.createElement('td');
                     startTimeCell.textContent = item.開始時間;
@@ -81,6 +92,12 @@
         // Load the schedule when the document is ready
         document.addEventListener('DOMContentLoaded', fetchSchedule);
     </script>
+    <style>
+        .alternate-row {
+            background-color: aliceblue;
+        }
+    </style>
+
 </body>
 
 </html>
