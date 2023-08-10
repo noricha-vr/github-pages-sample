@@ -4,6 +4,8 @@ Googleスプレッドシートから作成したJSONファイルを取ってき�
 
 Github Actionsで定期的にJSONファイルを更新しています。
 
-[Googleスプレッドシートから作ったJSON](https://script.googleusercontent.com/macros/echo?user_content_key=UwWYDEdbLFoKHVMzK1b9gtpwjVZv-MGw9tekXlsI34RHC_pNkQFTQjdQQvTc3Z-x1adgDoV7j8QCJM0CiJvs2dSu46ZzjKIkm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnJdgNG2cQvZjSgoYy3SiiaVo1_sc_kd3moTIsaiIQK_BWhuoQM4-TmIwNOwUK3_lyWXu0pIj0wWr48a0p1bdH4dW0m2lyD18cNz9Jw9Md8uu&lib=MLoMIN9FtTpFMSP_bVTuP0D8rQg-QTqZL)
+## 処理の流れ
 
+[Googleスプレッドシートから作ったJSON](https://script.googleusercontent.com/macros/echo?user_content_key=UwWYDEdbLFoKHVMzK1b9gtpwjVZv-MGw9tekXlsI34RHC_pNkQFTQjdQQvTc3Z-x1adgDoV7j8QCJM0CiJvs2dSu46ZzjKIkm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnJdgNG2cQvZjSgoYy3SiiaVo1_sc_kd3moTIsaiIQK_BWhuoQM4-TmIwNOwUK3_lyWXu0pIj0wWr48a0p1bdH4dW0m2lyD18cNz9Jw9Md8uu&lib=MLoMIN9FtTpFMSP_bVTuP0D8rQg-QTqZL)
+↓fetch_data.pyで更新
 [Github Pagesに出力されたJSON](https://noricha-vr.github.io/github-pages-sample/sample.json)
