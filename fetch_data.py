@@ -15,7 +15,7 @@ if __name__ == '__main__':
     data = response.json()
 
     # JSONデータをファイルに保存する
-    with open('sample.json', 'w', encoding='utf-8') as file:
+    with open('public/sample.json', 'w', encoding='utf-8') as file:
         json.dump(data, file, ensure_ascii=False, indent=4)
 
     print("JSONデータをsample.jsonに保存しました。")
