@@ -27,10 +27,10 @@
         <table class="table table-light">
             <thead>
                 <tr>
-                    <th>テーマ</th>
                     <th>日付</th>
                     <th>開始時間</th>
                     <th>発表者</th>
+                    <th>テーマ</th>
                 </tr>
             </thead>
             <tbody id="schedule" class="table shadow">
@@ -52,21 +52,14 @@
                 for (let item of data) {
                     let row = document.createElement('tr');
 
-                    let themeCell = document.createElement('td');
-                    themeCell.textContent = item.テーマ;
-
                     let dateCell = document.createElement('td');
                     let parsedDate = new Date(item.日付);
                     let formattedDate = `${parsedDate.getFullYear()}-${String(parsedDate.getMonth() + 1).padStart(2, '0')}-${String(parsedDate.getDate()).padStart(2, '0')}`;
-                    dateCell.textContent = formattedDate;
 
                     if (previousDate !== formattedDate) {
                         isAlternate = !isAlternate; // 日付が変わった場合、フラグを反転
+                        dateCell.textContent = formattedDate;
                         previousDate = formattedDate;
-                    }
-
-                    if (isAlternate) {
-                        row.classList.add('alternate-row');
                     }
 
                     let startTimeCell = document.createElement('td');
@@ -76,10 +69,19 @@
                     let presenterCell = document.createElement('td');
                     presenterCell.textContent = item.発表者;
 
-                    row.appendChild(themeCell);
+                    let themeCell = document.createElement('td');
+                    themeCell.textContent = item.テーマ;
+
+
+
                     row.appendChild(dateCell);
                     row.appendChild(startTimeCell);
                     row.appendChild(presenterCell);
+                    row.appendChild(themeCell);
+
+                    if (isAlternate) {
+                        row.classList.add('alternate-row');
+                    }
 
                     scheduleBody.appendChild(row);
                 }
@@ -95,6 +97,17 @@
     <style>
         .alternate-row {
             background-color: aliceblue;
+        }
+
+        .table tr {
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .table td,
+        .table th {
+            border-top: none;
+            border-bottom: none;
         }
     </style>
 
